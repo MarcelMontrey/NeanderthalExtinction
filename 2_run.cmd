@@ -1,0 +1,2 @@
+java RandomWalk2D.RandomWalk
+exit

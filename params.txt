@@ -1,0 +1,11 @@
+// Integers.
+N_RUNS=25 // Number of runs.
+LENGTH=100 // World's length (lambda in previous models).
+START_LENGTH=50 // Initial border between Ns and Ms (n in previous models).
+WIDTH=1 // Width of the array (i.e. the size of the new dimension).
+
+// Doubles.
+WN=[0:0.01:0.5] // Relative fitness of Neanderthals (fitness of Moderns is 1 - this).
+
+// Strings.
+WRITE_PATH=data // The directory to which data is written.
