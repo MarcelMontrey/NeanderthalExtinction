@@ -44,7 +44,7 @@ public class RandomWalk {
       
       // Run the simulation with the current parameters.
       for(run = 0; run < Params.N_RUNS; run++) {
-        System.out.print("\t" + (run + 1));
+        System.out.print(" " + (run + 1));
         run();
       }
       System.out.println();
