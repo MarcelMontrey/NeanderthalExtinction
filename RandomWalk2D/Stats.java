@@ -10,7 +10,7 @@ public class Stats {
   // Initialize our record keeping.
   public static void init() {
     general = new String[2];
-    general[0] = "N\tM\tArea";
+    general[0] = "N\tM\tSteps\tArea";
     area = 0;
   }
   
@@ -31,6 +31,9 @@ public class Stats {
   public static void save() {
     // Record the winner.
     general[1] = (Band.N == RandomWalk.bands[0][0].type) ? "1\t0" : "0\t1";
+    
+    // Record the number of steps.
+    general[1] += "\t" + RandomWalk.steps;
     
     // If the winner was Neanderthals, record the invasion area as 0. Otherwise, record the invasion area.
     general[1] += (Band.N == RandomWalk.bands[0][0].type) ? "\t0" : "\t" + area;
