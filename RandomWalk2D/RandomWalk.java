@@ -11,7 +11,7 @@ import jmrm.Parameters; // Manages loading and iterating over parameters.
 public class RandomWalk {
   public static int run; // Which independent run we're on.
   public static int offset; // If we're running more than one simulation at once, offset which directory we're writing to.
-  public static int steps; // How many steps we've taken so far in the current simulation.
+  public static int cycles; // How many cycles we've taken so far in the current simulation.
   
   public static Band[][] bands; // Stores our 2D array of bands.
   
@@ -56,13 +56,13 @@ public class RandomWalk {
     // Initialize record keeping.
     Stats.init();
     
-    // Reset to the first step.
-    steps = 0;
+    // Reset to the first cycle.
+    cycles = 0;
     resetBands();
     resetNeighbors();
     
     // Iterate until one type goes extinct.
-    for(steps = 1; !extinct(); steps++) {
+    for(cycles = 1; !extinct(); cycles++) {
       deathBirth();
       Stats.record();
     }
@@ -73,13 +73,13 @@ public class RandomWalk {
   
   // Create our 2D array of bands.
   public static void resetBands() {
-    bands = new Band[Params.LENGTH][Params.WIDTH];
+    bands = new Band[Params.DEPTH][Params.WIDTH];
     
     // Create a band in every position in the array.
-    for(int i = 0; i < Params.LENGTH; i++) {
+    for(int i = 0; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
         // Create Neanderthal bands to the left of the border's starting position, and Modern bands to the right.
-        if(i < Params.START_LENGTH) {
+        if(i < Params.START_DEPTH) {
           bands[i][j] = new Band(Band.N);
         }
         else {
@@ -92,7 +92,7 @@ public class RandomWalk {
   // Assign each band the correct neighbor(s).
   public static void resetNeighbors() {
     // Assign neighbors to each band.
-    for(int i = 0; i < Params.LENGTH; i++) {
+    for(int i = 0; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
         ArrayList<Band> neighbors = new ArrayList<Band>(4); // Build up a list of the current band's neighbors.
         
@@ -102,7 +102,7 @@ public class RandomWalk {
         }
         
         // Right neighbor.
-        if(i < Params.LENGTH - 1) {
+        if(i < Params.DEPTH - 1) {
           neighbors.add(bands[i + 1][j]);
         }
         
@@ -125,7 +125,7 @@ public class RandomWalk {
   // Kill a band and replace it.
   public static void deathBirth() {
     // Select a random band for death.
-    int x = rand.nextInt(Params.LENGTH);
+    int x = rand.nextInt(Params.DEPTH);
     int y = rand.nextInt(Params.WIDTH);
     
     // Get the band's neighbors' fitnesses.
@@ -147,7 +147,7 @@ public class RandomWalk {
     int type = bands[0][0].type;
     
     // If any of the other bands don't match the first one, neither strategy is extinct.
-    for(int i = 0; i < Params.LENGTH; i++) {
+    for(int i = 0; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
         if(bands[i][j].type != type) {
           return false;

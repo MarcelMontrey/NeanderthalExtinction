@@ -6,8 +6,8 @@ import jmrm.Parameters;
 public class Params {
   // Integers.
   public static int N_RUNS; // Number of runs.
-  public static int LENGTH; // World's length (lambda in previous models).
-  public static int START_LENGTH; // Initial border between Ns and Ms (n in previous models).
+  public static int DEPTH; // World's depth (lambda in previous models).
+  public static int START_DEPTH; // Initial border between Ns and Ms (n in previous models).
   public static int WIDTH; // Width of the array (i.e. the size of the new dimension).
   
   // Doubles.
@@ -20,8 +20,8 @@ public class Params {
   public static void set() {
     // Set all the ints.
     N_RUNS = Parameters.getInt("N_RUNS");
-    LENGTH = Parameters.getInt("LENGTH");
-    START_LENGTH = Parameters.getInt("START_LENGTH");
+    DEPTH = Parameters.getInt("DEPTH");
+    START_DEPTH = Parameters.getInt("START_DEPTH");
     WIDTH = Parameters.getInt("WIDTH");
     
     // Set all the doubles.

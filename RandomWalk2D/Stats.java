@@ -4,25 +4,25 @@ import jmrm.FileIO;
 
 // This class records and saves the stats we wish to gather.
 public class Stats {
-  public static String[] general; // Records general simulation data: the winner (Ns or Ms) and the invasion area.
-  private static int area; // Tracks the total invasion area over the course of the simulation.
+  public static String[] general; // Records general simulation data: the winner (Ns or Ms) and the incursion index.
+  private static int incursion; // Tracks the incursion index over the course of the simulation.
   
   // Initialize our record keeping.
   public static void init() {
     general = new String[2];
-    general[0] = "N\tM\tSteps\tArea";
-    area = 0;
+    general[0] = "N\tM\tCycles\tIncursion Index";
+    incursion = 0;
   }
   
-  // Record stats for this time step.
+  // Record stats for this cycle.
   public static void record() {
     // Loop over the portion of the array where Moderns start.
-    for(int i = Params.START_LENGTH; i < Params.LENGTH; i++) {
+    for(int i = Params.START_DEPTH; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
-        // If there's a Neanderthal band in one of these positions, add the depth of this invasion to the total area.
+        // If there's a Neanderthal band in one of these positions, add the incursion index.
         if(RandomWalk.bands[i][j].type == Band.N) {
-          //area += i + 1 - Params.START_LENGTH;
-          area++;
+          //incursion += i + 1 - Params.START_DEPTH;
+          incursion++;
         }
       }
     }
@@ -33,14 +33,14 @@ public class Stats {
     // Record the winner.
     general[1] = (Band.N == RandomWalk.bands[0][0].type) ? "1\t0" : "0\t1";
     
-    // Record the number of steps.
-    general[1] += "\t" + RandomWalk.steps;
+    // Record the number of cycles.
+    general[1] += "\t" + RandomWalk.cycles;
     
-    // Rescale the invasion area by the array's length.
-    area /= Params.LENGTH;
+    // Rescale the incursion index by the array's depth.
+    incursion /= Params.DEPTH;
     
-    // If the winner was Neanderthals, record the invasion area as 0. Otherwise, record the invasion area.
-    general[1] += (Band.N == RandomWalk.bands[0][0].type) ? "\t0" : "\t" + area;
+    // If the winner was Neanderthals, record the incursion index as 0. Otherwise, record the incursion index.
+    general[1] += (Band.N == RandomWalk.bands[0][0].type) ? "\t0" : "\t" + incursion;
     
     // Get the file path for this simulation, creating a directory for it if one does not already exist.
     String path = FileIO.mkSubdir(Params.WRITE_PATH, RandomWalk.offset * Params.N_RUNS);
