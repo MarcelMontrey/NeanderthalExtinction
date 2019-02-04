@@ -21,7 +21,8 @@ public class Stats {
       for(int j = 0; j < Params.WIDTH; j++) {
         // If there's a Neanderthal band in one of these positions, add the depth of this invasion to the total area.
         if(RandomWalk.bands[i][j].type == Band.N) {
-          area += i + 1 - Params.START_LENGTH;
+          //area += i + 1 - Params.START_LENGTH;
+          area++;
         }
       }
     }
@@ -34,6 +35,9 @@ public class Stats {
     
     // Record the number of steps.
     general[1] += "\t" + RandomWalk.steps;
+    
+    // Rescale the invasion area by the array's length.
+    area /= Params.LENGTH;
     
     // If the winner was Neanderthals, record the invasion area as 0. Otherwise, record the invasion area.
     general[1] += (Band.N == RandomWalk.bands[0][0].type) ? "\t0" : "\t" + area;
