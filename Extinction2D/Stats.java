@@ -1,4 +1,4 @@
-package RandomWalk2D;
+package Extinction2D;
 
 import jmrm.FileIO;
 
@@ -20,7 +20,7 @@ public class Stats {
     for(int i = Params.START_DEPTH; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
         // If there's a Neanderthal band in one of these positions, add to the incursion index.
-        if(RandomWalk.bands[i][j].type == Band.N) {
+        if(Extinction.bands[i][j].type == Band.N) {
           incursions++;
         }
       }
@@ -30,19 +30,19 @@ public class Stats {
   // Save our recorded stats to files.
   public static void save() {
     // Record the winner.
-    general[1] = (Band.N == RandomWalk.bands[0][0].type) ? "1\t0" : "0\t1";
+    general[1] = (Band.N == Extinction.bands[0][0].type) ? "1\t0" : "0\t1";
     
     // Record the number of cycles.
-    general[1] += "\t" + RandomWalk.cycles;
+    general[1] += "\t" + Extinction.cycles;
     
     // Rescale the incursion index by the array's depth.
     incursions /= Params.DEPTH;
     
     // If the winner was Neanderthals, record the incursion index as 0. Otherwise, record the incursion index.
-    general[1] += (Band.N == RandomWalk.bands[0][0].type) ? "\t0" : "\t" + incursions;
+    general[1] += (Band.N == Extinction.bands[0][0].type) ? "\t0" : "\t" + incursions;
     
     // Get the file path for this simulation, creating a directory for it if one does not already exist.
-    String path = FileIO.mkSubdir(Params.WRITE_PATH, RandomWalk.offset * Params.N_RUNS);
+    String path = FileIO.mkSubdir(Params.WRITE_PATH, Extinction.offset * Params.N_RUNS);
     
     // Write our record to the appropriate file.
     FileIO.write(path + "general.tsv", general);

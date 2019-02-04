@@ -1,4 +1,4 @@
-package RandomWalk2D;
+package Extinction2D;
 
 // This class instantiates a single band in the 2D array.
 public class Band {

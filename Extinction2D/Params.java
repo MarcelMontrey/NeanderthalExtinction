@@ -1,4 +1,4 @@
-package RandomWalk2D;
+package Extinction2D;
 
 import jmrm.Parameters;
 

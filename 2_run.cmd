@@ -1,2 +1,2 @@
-java RandomWalk2D.RandomWalk
+java Extinction2D.Extinction
 exit

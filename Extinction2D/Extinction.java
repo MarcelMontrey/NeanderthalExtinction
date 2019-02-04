@@ -1,4 +1,4 @@
-package RandomWalk2D;
+package Extinction2D;
 
 import java.util.ArrayList; // Used when assigning neighbors to agents.
 import java.util.Random; // Randomization.
@@ -8,7 +8,7 @@ import jmrm.FileIO; // Used to write data to a file.
 import jmrm.Parameters; // Manages loading and iterating over parameters.
 
 // This class is the entry point for running the simulation.
-public class RandomWalk {
+public class Extinction {
   public static int run; // Current independent run.
   public static int offset; // If we're running more than one simulation at once, offset which directory we're writing to.
   public static int cycles; // How many cycles we've taken so far in the current simulation.
