@@ -9,7 +9,7 @@ import jmrm.Parameters; // Manages loading and iterating over parameters.
 
 // This class is the entry point for running the simulation.
 public class RandomWalk {
-  public static int run; // Which independent run we're on.
+  public static int run; // Current independent run.
   public static int offset; // If we're running more than one simulation at once, offset which directory we're writing to.
   public static int cycles; // How many cycles we've taken so far in the current simulation.
   
@@ -51,7 +51,7 @@ public class RandomWalk {
     }
   }
   
-    // Run the simulation once.
+  // Run the simulation once.
   private static void run() {
     // Initialize record keeping.
     Stats.init();
@@ -98,7 +98,7 @@ public class RandomWalk {
         
         // Left neighbor.
         if(i > 0) {
-         neighbors.add(bands[i - 1][j]);
+          neighbors.add(bands[i - 1][j]);
         }
         
         // Right neighbor.
@@ -124,27 +124,31 @@ public class RandomWalk {
   
   // Kill a band and replace it.
   public static void deathBirth() {
-    // Select a random band for death.
-    int x = rand.nextInt(Params.DEPTH);
-    int y = rand.nextInt(Params.WIDTH);
-    
-    // Get the band's neighbors' fitnesses.
-    double[] fitnesses = new double[bands[x][y].neighbors.length];
-    for(int i = 0; i < fitnesses.length; i++) {
-      fitnesses[i] = bands[x][y].neighbors[i].getFitness();
+    // Each band has some probability of dying.
+    for(int i = 0; i < Params.DEPTH; i++) {
+      for(int j = 0; j < Params.WIDTH; j++) {
+        // If the current band died, replace it.
+        if(rand.nextDouble() < Params.DEATH_RATE) {
+          // Get the band's neighbors' fitnesses.
+          double[] fitnesses = new double[bands[i][j].neighbors.length];
+          for(int k = 0; k < fitnesses.length; k++) {
+            fitnesses[k] = bands[i][j].neighbors[k].getFitness();
+          }
+          
+          // Pick a winner by sampling a multinomial distribution corresponding to the neighbors' fitnesses.
+          int winner = Utilities.sampleMultinom(fitnesses);
+          
+          // Replace the dead band's type with the winner's ype.
+          bands[i][j].type = bands[i][j].neighbors[winner].type;
+        }
+      }
     }
-    
-    // Pick a winner to reproduce by sampling a multinomial distribution corresponding to the neighbors' fitnesses.
-    int winner = Utilities.sampleMultinom(fitnesses);
-    
-    // Replace the dead band's type with the winner's ype.
-    bands[x][y].type = bands[x][y].neighbors[winner].type;
   }
   
   // Is one strategy or the other extinct?
   public static Boolean extinct() {
     // Get the type of an arbitrary band.
-    int type = bands[0][0].type;
+    int type = bands[Params.DEPTH - 1][Params.WIDTH - 1].type;
     
     // If any of the other bands don't match the first one, neither strategy is extinct.
     for(int i = 0; i < Params.DEPTH; i++) {

@@ -19,7 +19,7 @@ public class Stats {
     // Loop over the portion of the array where Moderns start.
     for(int i = Params.START_DEPTH; i < Params.DEPTH; i++) {
       for(int j = 0; j < Params.WIDTH; j++) {
-        // If there's a Neanderthal band in one of these positions, add the incursion index.
+        // If there's a Neanderthal band in one of these positions, add to the incursion index.
         if(RandomWalk.bands[i][j].type == Band.N) {
           incursions++;
         }

@@ -15,6 +15,6 @@ public class Band {
   
   // Get the band's fitness, based on its type.
   public double getFitness() {
-    return (type == N) ? Params.WN : 1.0 - Params.WN;
+    return (type == M) ? Params.WM : Params.WN;
   }
 }
