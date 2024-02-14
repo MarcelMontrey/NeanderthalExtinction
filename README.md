@@ -25,7 +25,7 @@ There is a general consensus among archaeologists that replacement of Neandertha
 5. On Windows, `run4.cmd` and `run8.cmd` will run 4 or 8 instances of the simulation in parallel. An offset parameter is passed to the simulation, to ensure there are no collisions when writing to a file. Useful for taking advantage of multicore processors.
 
 # License
-Distributed under the MIT License. See LICENSE.txt for more information.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 # Contact
 Marcel Montrey - marcel.montrey@gmail.com
