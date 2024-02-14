@@ -1,5 +1,5 @@
 # Description
-Agent-based model comparing differential fitness versus genetic drift explanations of Neanderthal extinction, including on a 2D lattice. This code was used to generate data presented in the following journal publication:
+Agent-based model comparing differential fitness versus genetic drift explanations of Neanderthal extinction. This code was used to generate data presented in the following journal publication:
 
 Shultz, D. R., Montrey, M., & Shultz, T. R. (2019). Comparing fitness and drift explanations of Neanderthal replacement *Proc. R. Soc. B.* **286**: 20190907. http://doi.org/10.1098/rspb.2019.0907
 
