@@ -1,7 +1,6 @@
 # Description
 Agent-based model comparing differential fitness versus genetic drift explanations of Neanderthal extinction. This code was used to generate data presented in the following journal publication:
-
-Shultz, D. R., Montrey, M., & Shultz, T. R. (2019). Comparing fitness and drift explanations of Neanderthal replacement *Proc. R. Soc. B.* **286**: 20190907. http://doi.org/10.1098/rspb.2019.0907
+> Shultz, D. R., Montrey, M., & Shultz, T. R. (2019). Comparing fitness and drift explanations of Neanderthal replacement *Proc. R. Soc. B.* **286**: 20190907. http://doi.org/10.1098/rspb.2019.0907
 
 The full simulation code is also available from the Dryad Digital Respoistory: https://doi.org/10.5061/dryad.5kc2sm0
 
